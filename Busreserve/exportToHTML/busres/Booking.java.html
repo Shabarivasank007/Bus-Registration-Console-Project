@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Booking.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d55fde; font-style: italic;}
+.s1 { color: #bbbbbb;}
+.s2 { color: #89ca78;}
+.s3 { color: #d19a66;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Booking.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">busres;</span>
+
+<span class="s0">import </span><span class="s1">java.text.ParseException;</span>
+<span class="s0">import </span><span class="s1">java.text.SimpleDateFormat;</span>
+<span class="s0">import </span><span class="s1">java.util.*;</span>
+
+<span class="s0">public class </span><span class="s1">Booking {</span>
+    <span class="s1">String Passname;</span>
+    <span class="s0">int </span><span class="s1">busno;</span>
+    <span class="s1">Date date;</span>
+
+    <span class="s1">Scanner scan = </span><span class="s0">new </span><span class="s1">Scanner(System.in);</span>
+
+    <span class="s0">public </span><span class="s1">Booking() </span><span class="s0">throws </span><span class="s1">ParseException {</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Enter The Passenger Name :&quot;</span><span class="s1">);</span>
+        <span class="s1">Passname = scan.next();</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Enter the Bus No :&quot;</span><span class="s1">);</span>
+        <span class="s1">busno = scan.nextInt();</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Enter the date :&quot;</span><span class="s1">);</span>
+
+        <span class="s1">String dateInput = scan.next();</span>
+        <span class="s1">SimpleDateFormat dateFormat = </span><span class="s0">new </span><span class="s1">SimpleDateFormat(</span><span class="s2">&quot;dd-MM-yyyy&quot;</span><span class="s1">);</span>
+        <span class="s1">date = dateFormat.parse(dateInput);</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">isAvailable(List&lt;Booking&gt; booklist, List&lt;Bus&gt; Buslist) {</span>
+        <span class="s0">int </span><span class="s1">capacity = </span><span class="s3">0</span><span class="s1">;</span>
+        <span class="s0">for </span><span class="s1">(Bus bus : Buslist) {</span>
+            <span class="s0">if </span><span class="s1">(bus.getBusno() == busno) {</span>
+                <span class="s1">capacity = bus.getCapacity();</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">int </span><span class="s1">booked = </span><span class="s3">0</span><span class="s1">;</span>
+        <span class="s0">for </span><span class="s1">(Booking b : booklist) {</span>
+            <span class="s0">if </span><span class="s1">(b.busno == busno &amp;&amp; b.date.equals(date)) {</span>
+                <span class="s1">booked++;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">booked &lt; capacity;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
